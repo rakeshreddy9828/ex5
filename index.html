@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+          
+         function wordss()
+         {
+             var a=document.getElementById("t1").value;
+          
+          var words=a.split(" ");
+      
+          var noofwords = words.length;
+          document.getElementById("t2").value=noofwords;
+          for(var i=0;i<words.length;i++)
+          {
+              document.getElementById("t3").value+=words[i].length+" ,";
+             
+          }
+          var max=0;
+          var longer=words[0];
+          for(var i=0;i<words.length;i++)
+          {
+              if(words[i].length>max){
+                  max=words[i].length;
+                  longer=words[i];
+              }
+          }
+           var min=words[0].length;
+          var shorter=words[0];
+          for(var i=0;i<words.length;i++)
+          {
+              if(words[i].length<min){
+                  min=words[i].length;
+                  shorter=words[i];
+              }
+          }
+
+          document.getElementById("t4").value=longer;
+          document.getElementById("t5").value=shorter;
+      }
+      function calculate(){
+               var web = document.getElementById("web").value;
+               var data = document.getElementById("data").value;
+               var score =(parseInt(web)+parseInt(data));
+              
+               var per=score*100/2;
+               if(per>=95){
+                   grade="O";
+               }
+               else if(per>=90 && per<95)
+               {
+                   grade="S";
+               }
+                 else if(per>=80 && per<90)
+               {
+                   grade="A";
+               }
+               
+                else if(per>=70 && per<80)
+               {
+                   grade="B";
+               }
+                else if(per>=60 && per<70)
+               {
+                   grade="C";
+               }
+               else if(per>=50 && per<60)
+               {
+                   grade="P";
+               }
+               else{
+                   grade="R"
+               }
+                document.getElementById("grade").innerHTML=grade;
+            }
+            function design()
+            {
+                var r = parseInt(document.getElementById("rows").value);
+                var c =  parseInt(document.getElementById("columns").value);
+                for(var i=0;i<r;i++)
+                {
+                    for(j=0;j<c;j++)
+                    {
+                        document.getElementById("pattern").innerHTML +="<img src='img1.jpg' width=50px height=50px>"
+                    }
+                     document.getElementById("pattern").innerHTML +="<br>"
+                }
+                
+            }
+            function convert()
+            {
+                var index = document.getElementById("from").selectedIndex; 
+                var value = document.getElementById("from")[index].value; 
+                var index2 = document.getElementById("to").selectedIndex; 
+                var value2 = document.getElementById("to")[index2].value; 
+               var val= document.getElementById("data1").value;
+               var result=0;
+               if(value == "Pounds" && value2 == "Kilograms")
+               {
+                   result = parseFloat(val)*0.45359237;
+               }
+               else if(value == "Kilograms" && value2 == "Pounds")
+               {
+                    result = parseFloat(val)*2.20462262;
+               }
+               document.getElementById("answer").innerHTML=result;
+           }
+           function order()
+           {
+               var p1 = parseInt(document.getElementById("small").value);
+               var p2 = parseInt(document.getElementById("medium").value);
+               var p3 = parseInt(document.getElementById("large").value);
+               if(document.getElementById("r1").checked==true)
+               
+                   var tax = parseInt(document.getElementById("r1").value);
+                
+               else if(document.getElementById("r2").checked==true)
+               
+                    var tax = parseInt(document.getElementById("r2").value);
+               
+               else if(document.getElementById("r3").checked==true)
+               
+                    var tax = parseInt(document.getElementById("r3").value);  
+                
+                smallp = p1*100;
+                mediump = p2*200;
+                largep = p2*400;
+                total = smallp+mediump+largep;
+                price = total+(total*tax/100);
+                document.getElementById("price").innerHTML=price;
+               
+           }
+        </script>
+    </head>
+    <body>
+        <div>
+            Q1:Write a function that accepts a string as a parameter and find the number of words ,length of words,longest and shortest words within the
+string.
+<fieldset>
+            <table>
+                <tr>
+                    <td>String :</td>
+                    <td><input type="text" id="t1" ></td>
+                </tr>
+                <tr>
+                    <td>No Of Words:</td>
+                    <td><input type="text" id="t2" value=""></td>
+                </tr>
+                <tr>
+                    <td>Length of words :</td>
+                    <td><input type="text" id="t3" value=""></td>
+                </tr>
+                <tr>
+                    <td>Longest word :</td>
+                    <td><input type="text" id="t4" value=""></td>
+                </tr>
+                <tr>
+                    <td>Shortest word :</td>
+                    <td><input type="text" id="t5" value=""></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" value="Done" onclick="wordss();">
+                    </td>
+                </tr>
+            </table>
+</fieldset>
+        </div>
+        <br>
+        <div>
+            Q2: Write the calculate() function that takes the mark in the text box and displays
+            the grade.<br>
+<fieldset>
+        <p id="p1"></p>
+        Web Tech: <input type="text" id="web" /><br />
+        Database: <input type="text" id="data" /><br />
+        <button onclick="calculate();">Get Grade!</button>
+        Your Grade is<span id="grade"></span>,  <br />
+</fieldset>
+        </div>
+        <br>
+        
+        <div> 
+            Q3: Design a webpage that allows users to design a pattern. 
+            <fieldset>
+                <legend>Pattern Design</legend>
+            Rows: <input type="text" id ="rows" />
+            Columns: <input type="text" id ="columns" /> <br />
+            <button onclick="design();">Design Pattern</button>
+            </fieldset>
+        </div>
+        <div id="pattern"></div>
+        
+        <br>      
+        <div>
+            Q4: Write the convert() function that takes the value in the
+text input and converts it from the unit selected in the left dropdown box to the unit selected
+on the right.
+        <fieldset> 
+            Convert <input type="text" id="data1" >
+            <select id="from">
+                <option>Pounds</option>
+                <option>Kilograms</option>
+            </select>
+            to
+            <select id ="to">
+                <option>Kilograms</option>
+                <option>Pounds</option>
+            </select>
+            <button onclick="convert();">Calculate</button> <span id="answer"></span>
+        </fieldset>  
+        </div>
+        <br>
+        
+        <div>
+            Q5:Design a form to take order and calculate the bill. 
+        
+        <fieldset><legend>Pizza Order Form</legend>
+            # of Small pizza <input type="text" id="small" /><br />
+            # of Medium pizza <input type="text" id="medium" /><br />
+            # of Large pizza <input type="text" id="large" /><br />
+            Tip:
+            <label><input type="radio" value="10" name="tip" id="r1" /> 10%</label>
+            <label><input type="radio" value="15" name="tip" id="r2" checked="checked" /> 15%
+           </label>
+            <label><input type="radio" value="20" name="tip" id="r3" /> 20%</label> <br />
+            <button id="submit" onclick="order();">Calculate Order</button>
+        
+        <p>
+            Cost of order: <span id="price"></span>
+        </p>
+        </fieldset>
+        </div>
+    </body>
+</html>
